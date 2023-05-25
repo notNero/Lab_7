@@ -12,11 +12,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
 import com.topic2.android.notes.domain.model.NoteModel
-import com.topic2.android.notes.routing.Screen
-import com.topic2.android.notes.ui.components.AppDrawer
 import com.topic2.android.notes.ui.components.Note
 import com.topic2.android.notes.viewmodel.MainViewModel
-import com.topic2.android.notes.ui.components.TopAppBar
 import kotlinx.coroutines.launch
 
 @Composable
@@ -31,7 +28,7 @@ private fun NotesList(
             Note(
                 note = note,
                 onNoteClick = onNoteClick,
-                onNoteCheckedChange = onNoteCheckedChange,
+                onNoteCheckedChange = onNoteCheckedChange,,
             )
         }
     }

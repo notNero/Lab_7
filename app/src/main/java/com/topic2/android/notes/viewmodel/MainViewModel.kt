@@ -22,6 +22,8 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     val notesNotInTrash: LiveData<List<NoteModel>> by lazy{ repository.getAllNotesNotInTrash() }
 
+    val notesInTrash by lazy { repository.getAllNotesInTrash() }
+
     private var _noteEntry =  MutableLiveData(NoteModel())
     val noteEntry: LiveData<NoteModel> = _noteEntry
 
