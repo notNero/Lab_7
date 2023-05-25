@@ -28,7 +28,7 @@ private fun NotesList(
             Note(
                 note = note,
                 onNoteClick = onNoteClick,
-                onNoteCheckedChange = onNoteCheckedChange,,
+                onNoteCheckedChange = onNoteCheckedChange
             )
         }
     }
