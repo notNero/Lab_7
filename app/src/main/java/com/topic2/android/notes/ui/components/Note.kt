@@ -92,6 +92,6 @@ import com.topic2.android.notes.ui.fromHex
                 "Заметка 1",
                 "Содержание 1",
                 null
-            )
+            ),
         )
     }
