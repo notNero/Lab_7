@@ -292,7 +292,7 @@ private fun PickedColor(color: ColorModel){
             .padding(top = 16.dp)
     ) {
         Text(
-            text = "Picked color", modifier = Modifier
+            text = "", modifier = Modifier
                 .weight(1f)
                 .align(Alignment.CenterVertically)
         )
@@ -322,7 +322,7 @@ private fun NoteCheckOption(
             .padding(top = 16.dp)
     ) {
         Text(
-            text = "Can note be checked off?", modifier = Modifier.weight(1f)
+            text = "", modifier = Modifier.weight(1f)
         )
         Switch(
             checked = isChecked,

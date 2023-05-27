@@ -9,12 +9,34 @@ import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.tooling.preview.Preview
 import com.topic2.android.notes.domain.model.NoteModel
+import com.topic2.android.notes.routing.Screen
+import com.topic2.android.notes.ui.components.AppDrawer
 import com.topic2.android.notes.ui.components.Note
 import com.topic2.android.notes.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
+
+@Composable
+fun rememberDrawerState(
+    initialValue: DrawerValue,
+    confirmStateChange: (DrawerValue) -> Boolean = { true }
+): DrawerState
+{
+    return rememberSaveable(saver = DrawerState.Saver(confirmStateChange)) {
+        DrawerState(initialValue,confirmStateChange)
+    }
+}
+@Composable
+fun rememberScaffoldState(
+    drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
+    snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
+): ScaffoldState = remember{
+    ScaffoldState(drawerState, snackbarHostState)
+}
 
 @Composable
 private fun NotesList(
@@ -79,6 +101,17 @@ fun NotesScreen(viewModel: MainViewModel) {
                             imageVector = Icons.Filled.List,
                             contentDescription = "Drawer Button"
                         )
+                    }
+                }
+            )
+        },
+        scaffoldState = scaffoldState,
+        drawerContent = {
+            AppDrawer(
+                currentScreen = Screen.Notes,
+                closeDrawerAction = {
+                    coroutineScope.launch {
+                        scaffoldState.drawerState.close()
                     }
                 }
             )
